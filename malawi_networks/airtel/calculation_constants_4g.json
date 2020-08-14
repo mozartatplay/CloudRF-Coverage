@@ -1,0 +1,118 @@
+//         Strong     Fair       Poor 
+// 2G	<=-85dBm	>-85dBm & <-100dBm	>-101dBm  ... -110
+// 3G	<=-85dBm	>-85dBm & <-100dBm	>-101dBm  ... -110
+// 4G	<=-105dBm	>-106dBm & <-110dBm	>-111dBm  ... -120
+// min rx thresholds : -95 (2G), -97 (3G), - 105 (4G)
+{
+    "general_constants": {
+        // clh (Random Clutter Height): 1  (For use only with res=90 DEM)
+        "clm": "0",
+        // cli (Radio climate): (1: Equatorial (Congo) 2: Continental Subtropical (Sudan)
+        // 3: Maritime Subtropical (West coast of Africa) 4: Desert (Sahara) 5: Continental Temperate 
+        // 6: Maritime Temperate, over land (UK and west coasts of US & EU) 7: Maritime Temperate, over sea)
+        "cli": "5",
+        // cll Land cover toggle. Enriches hard DSM and LIDAR terrain data with permeable materials like tree
+        "cll": "1", 
+        // dis (Distance Distance units): m ( m = metres/km), f = feet/Mi)
+        "dis": "m",
+        // col: (Colour schema code.): 10 ( 1 = Cellular (5), 2=Red, 3=Green, 4=Blue, 5=Microwave(7), 
+        // 7=Custom RGB, 8=Automatic by frequency, 10=Rainbow(24), 11=Green/Blue/Red, 13=Sub noise floor (10),
+        //  14=TV broadcasting (4). Any value greater than 32 will be interpreted as a Hexadecimal RGB colour 
+        // eg. 65535 = 0x00FFFF or RGB(0,255,255)
+        "col": "2",
+        // file (File Format): kmz (File format. Either kmz, shp, tiff, url, html)
+        "file": "tiff",
+        // ked (Knife edge diffraction): 0 (Enhances basic propagation models other than 1 (ITM))
+        //ked": "0",
+        // uid (Unique user identifier. Your CloudRF account id number.): 21531
+        "uid": "28915",
+        // key (Unique API key)  : a8ec44b5ad85e0ab626e55f20e3cb5da111999a2 (Unique API key.)
+        "key": "3ac099165b846b48ecb8e59d1835eee2eeb3f33c",
+        // out (Measurement Units): 2  (Measurement units. 1 = dB, 2=dBm (default), 3=dBuV/m, 4=BER)
+        "out": "2",
+        // pm (Propagation model): 1 (1=Irregular Terrain Model, 2=Line of Sight (LOS), 3=Hata, 4=ECC33, 
+        // 5=SUI Microwave, 6=COST231, 7=Free space path loss, 8=ITWOM, 9=Ericsson9999, 
+        // 10=Plane earth loss, 11=Egli. ITWOM is not available with engine=2 due to licensing.)
+        "pm": "1",
+        //pe  subtype for propagation model
+        // Hata,ECC33,SUI,COST231,Ericsson. 1=Conservative, 2=Average or 3=Optimistic.
+        // If you use pe=1 with the ITM model (pm=1) it will add 20dB of attenuation.
+        "pe": "2",
+        // rad (Radius): 10 (Radius for calculation. Miles or KM depending on value of 'dis')
+        "rad": "20",
+        // res  (Resolution in metres): 60 ( 30=30m DSM (Global up to 60N), 60, 90. 
+        // 1=1m LIDAR subject to availability), 2=2m LIDAR.
+        //"res": "60",
+        "res": "30",
+        // ter (Terrain): Terrain code for ITM model ONLY. Pre-dates landcover.
+        //  1=Water,2=Wet ground,3=Farmland,4=Forest/Average,5=Mountain/Sand,6=City/Poor ground
+        "ter": "4",
+        // Engine (Propagation engine).: 2 (1=Signal server (Original open source engine, 4 cores). 
+        // 2=SLEIPNIR (New engine with LOS built in to every model, 8 cores)
+        "engine": "2",
+        //  Red threshold. For use only with custom RGB schema
+        "red": "-80",
+         // Green threshold. For use only with custom RGB schema
+         "grn": "-90",
+        //  Blue threshold. For use only with custom RGB schema
+        "blu": "-100"
+
+    },
+    "network_constants": {
+        // net (Network): NET1
+        "net": "MALAWI4G_1800_itm_rxs105_cll_default_ant_kathrein_742266_5dbi_cable_loss",
+        // Technology can be GSM, UMTS or LTE
+        "tech": "LTE",
+        // ber (Bit Error Rate) (For mode out=4 only). Numbers 1-6 are generic. 7-12 are LoRa spreading factors.
+        // 1=0.1, 2=0.01, 3=0.001, 4=0.0001,5=0.00001,6=0.000001. 7=SF7,8=SF8,9=SF9,10=SF10,11=SF11,12=SF12 )
+        "ber": "0",
+        // rxs (Receiver sensitivity/threshold):  (Units determined according to 'out')
+        "rxs": "-105",
+        // rxg (Receiver antenna gain in dBi): 0
+        "rxg": "0",
+        // rxh (Receiver Height in metres): 2 
+        "rxh": 2,
+        //  pol (Antenna polarisation): v ( Either vertical 'v' or horizontal 'h')
+        "pol": "v",
+        //Transmitter power in Watts - will extract from sheets - setting to maximum (46dBm = 39.81W) FIXME 
+	    // Macro –  Typical transmit power ~43 dBm (max 46dBm); antenna gain ~12-15 dBi.
+	    // Pico –  Typical transmit power range from ~ 23 dBm-30 dBm, 0-5 dBi antenna gain;
+	    // Femto – Typical transmit power < 23dBm.
+        //"txw": "19.95" (43 dBm)
+        "txw": "40",
+        //rel ITM model required reliability as %: 80,90,99
+        "rel": "90",
+        //nf" Noise floor. Should be between -120 and -90 normally and varies with bandwidth
+        // so 1MHz has a noise floor of -114dBm. 10MHz = -104dBm, 20MHz = -101dBm
+        //"nf": "-104"
+        // bwi Bandwidth in MHz. 1MHz has a noise floor of -114dBm
+        "bwi": "5"
+    },
+    // 5dBi cable loss subtracted from antenna gain
+    "antenna_constants": {
+        "default_antenna": "3389",
+        "default_gain":  13.43
+    },
+    "celldata_field_mappings": {
+        "nam": "cellID",
+        "lat": "latitude",
+        "lon": "longitude",
+        "bw": "none",
+        "band": "band",
+        "arfcn_d": "none",
+        "antennaT": "antenna",
+        "txh": "height",
+        "azi": "azimuth",
+        "etilt": "etilt",
+	    "mtilt": "mtilt"
+    },
+    "bounding_box": {
+        "top_left": {"lon": 32.0, "lat": -8.0},
+        "bottom_right": {"lon": 36.0, "lat": -18.0}
+        //"top_left": {"lon": 34.81, "lat": -14.94},
+        //"bottom_right": {"lon": 35.83, "lat": -15.53}
+    }
+
+
+}
+
