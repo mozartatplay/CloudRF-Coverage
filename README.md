@@ -61,7 +61,7 @@ optional arguments:
 
 # DESCRIPTION
 
-cloudrf_coverage.py calls the CloudRF API (https://api.cloudrf.com/) using the input files. Each cellID row in Celldata-file is used to generate a coverage plot for that specific CellID and combination of parameters in Config-file and Antenna-file. The output coverage for each cell is placed in a folder ./calculations/[network_name] where the network_name is set in the calculations constants file under the ['network_constants']['net'] field  
+Cloudrf_coverage.py calls the CloudRF API (https://api.cloudrf.com/) using the input files. You will need to register an account at CloudRF before using this tool. Each cellID row in Celldata-file is used to generate a coverage plot for that specific CellID and combination of parameters in Config-file and Antenna-file. The output coverage for each cell is placed in a folder ./calculations/[network_name] where the network_name is set in the calculations constants file under the ['network_constants']['net'] field  
 
 If a 'tiff' file format is specified in the calculations constants file. A combined coverage will be calculated using GDAL tools and the final result will be placed in the calculations folder
 
@@ -70,7 +70,15 @@ If a 'tiff' file format is specified in the calculations constants file. A combi
 ## site_data:
  A csv file containing all the cell data provided by the operator with field values defined in Config-file
 ## calc_constants: 
-A json formatted file containing CloudRF general and network parameters as well as antenna default values and cell data field mappings
+A json formatted file containing CloudRF general and network parameters as well as antenna default values and cell data field mappings.  
+
+Make sure you change these fields to those provide by CloudRF
+```
+// uid (Unique user identifier. Your CloudRF account id number.): 
+"uid": <Your CloudRF ID>
+// key (Unique API key)  :  (Unique API key.)
+"key": <Your CloudRF key>,
+```
 
 # Optional OPTIONS
 
