@@ -25,7 +25,6 @@ def cmd_run (paramstr):
 # Function to extract shapefiles
 def extract_shapefiles(shapefiles):
    
-
 	if not os.path.exists("extract"):
 		os.makedirs("extract")
 
@@ -63,6 +62,11 @@ def combine_tiff(tiffPath, tiffCombineName):
 
 	# Check for exisitance of files
 	fcheck =  glob.glob(tiffPath)
+
+	# Break up files
+	print (fcheck)
+
+
 	if len(fcheck) > 0: 
 		tempcombine = os.path.splitext(tiffCombineName)[0] + '_temp.tiff'
 		print ('Running combiner on: ', tiffPath)
@@ -86,6 +90,7 @@ def combine_tiff(tiffPath, tiffCombineName):
 		print ('No files matching: ', tiffPath)
 		print ()
 
+
 # Function to generate geo json
 def create_geojson(tiffCombineName, geojsonName):
 	# Create GeoJSON version of file
@@ -100,6 +105,7 @@ def create_geojson(tiffCombineName, geojsonName):
 		pstr = 'gdal_polygonize.py -f GeoJSON ' + tiffCombineName + ' ' + geojsonName
 		cmd_run(pstr)
 		# gdal_polygonize.py -f "GeoJSON” [inputfile].tiff [outputfile].geojson
+
 	else:
 		print ('No files matching: ', tiffCombineName)
 		print ()
@@ -209,6 +215,7 @@ else:
 		geojsonName = path_calc + net_path + "_" + str(i) + '.geojson'
 		print ('Running combiner for files:  ', search_path)
 		combine_tiff(search_path, tiffCombineName)
+
 
 		if args.geojson:
 			print ('running Tiff to GeoJson for Tiff: ', tiffCombineName)
