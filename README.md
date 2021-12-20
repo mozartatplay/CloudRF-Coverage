@@ -10,6 +10,7 @@ If you haven't installed Homebrew
 $(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)
 ```
 
+
 From home directory
 ```
 brew install gdal
